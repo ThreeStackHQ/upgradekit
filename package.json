@@ -1,0 +1,25 @@
+{
+  "name": "upgradekit",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "db:generate": "turbo run db:generate --filter=@upgradekit/db",
+    "db:migrate": "turbo run db:migrate --filter=@upgradekit/db"
+  },
+  "devDependencies": {
+    "turbo": "^1.13.4",
+    "typescript": "^5.3.3"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "pnpm@8.15.4",
+  "engines": {
+    "node": ">=18"
+  }
+}

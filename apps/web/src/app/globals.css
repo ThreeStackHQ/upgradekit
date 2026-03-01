@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 9 9 11;
+    --foreground: 250 250 250;
+    --card: 24 24 27;
+    --card-foreground: 250 250 250;
+    --border: 39 39 42;
+    --input: 39 39 42;
+    --primary: 245 158 11;
+    --primary-foreground: 9 9 11;
+    --secondary: 39 39 42;
+    --secondary-foreground: 250 250 250;
+    --muted: 39 39 42;
+    --muted-foreground: 161 161 170;
+    --accent: 249 115 22;
+    --accent-foreground: 250 250 250;
+    --destructive: 239 68 68;
+    --ring: 245 158 11;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-zinc-800;
+  }
+  body {
+    @apply bg-zinc-950 text-zinc-50;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-zinc-900;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-600;
+}
