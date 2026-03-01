@@ -1,0 +1,32 @@
+{
+  "name": "@upgradekit/react",
+  "version": "0.1.0",
+  "description": "React SDK for UpgradeKit feature gating",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:types && npm run build:esm && npm run build:cjs",
+    "build:types": "tsc --declaration --declarationDir dist/types --emitDeclarationOnly",
+    "build:esm": "tsc --module esnext --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "type-check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "typescript": "^5.3.3"
+  },
+  "keywords": ["upgradekit", "feature-gating", "react", "sdk"],
+  "license": "MIT",
+  "files": ["dist"]
+}

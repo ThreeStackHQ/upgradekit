@@ -4,6 +4,7 @@ import { NextRequest } from "next/server";
 import { db, gates, eq, desc } from "@upgradekit/db";
 import { ok, fail, serverError, requireAuth } from "@/lib/api";
 import { createGateSchema } from "@/lib/validators";
+import { canCreateGate } from "@/lib/tier";
 
 // POST /api/gates — create a new gate
 export async function POST(req: NextRequest): Promise<Response> {
@@ -28,6 +29,16 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   const { name, trigger_type, headline, body: bodyText, cta_text, upgrade_url, dismiss_behavior } =
     parsed.data;
+
+  // Enforce per-plan gate creation limits
+  const allowed = await canCreateGate(session.user.id);
+  if (!allowed) {
+    return fail(
+      "Gate limit reached for your current plan. Upgrade to create more gates.",
+      "GATE_LIMIT_REACHED",
+      403
+    );
+  }
 
   try {
     const [gate] = await db
