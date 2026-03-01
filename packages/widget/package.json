@@ -1,15 +1,19 @@
 {
   "name": "@upgradekit/widget",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
-  "description": "UpgradeKit embed widget for feature gating",
-  "main": "./src/index.ts",
+  "description": "UpgradeKit embeddable upgrade gate widget",
+  "main": "dist/upgradekit.js",
+  "files": ["dist", "src"],
   "scripts": {
-    "build": "echo 'Widget build coming soon'",
+    "build": "rollup -c rollup.config.mjs",
+    "build:dev": "rollup -c rollup.config.mjs --environment NODE_ENV:development",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "@upgradekit/config": "workspace:*",
+    "rollup": "^4.59.0",
     "typescript": "^5.3.3"
   }
 }
