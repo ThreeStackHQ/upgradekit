@@ -3,7 +3,7 @@ import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import { db, users, eq } from "@upgradekit/db";
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+const nextAuth = NextAuth({
   providers: [
     GitHub({
       clientId: process.env["GITHUB_CLIENT_ID"]!,
@@ -79,4 +79,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     error: "/login",
   },
   secret: process.env["AUTH_SECRET"],
-});
+}) as any;
+
+export const { handlers, auth, signIn, signOut } = nextAuth;
