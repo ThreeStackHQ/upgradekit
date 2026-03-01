@@ -6,8 +6,11 @@ export default auth((req: NextRequest & { auth: unknown }) => {
   const isLoggedIn = !!(req as { auth: unknown }).auth;
   const { pathname } = req.nextUrl;
 
-  // Protect /dashboard/* routes
-  if (pathname.startsWith("/dashboard")) {
+  // Protected dashboard routes
+  const protectedPrefixes = ["/dashboard", "/gates", "/analytics", "/settings", "/billing"];
+  const isProtected = protectedPrefixes.some((prefix) => pathname.startsWith(prefix));
+
+  if (isProtected) {
     if (!isLoggedIn) {
       const loginUrl = new URL("/login", req.nextUrl.origin);
       loginUrl.searchParams.set("callbackUrl", pathname);
@@ -24,5 +27,12 @@ export default auth((req: NextRequest & { auth: unknown }) => {
 });
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login"],
+  matcher: [
+    "/dashboard/:path*",
+    "/gates/:path*",
+    "/analytics/:path*",
+    "/settings/:path*",
+    "/billing/:path*",
+    "/login",
+  ],
 };

@@ -1,9 +1,12 @@
 {
   "name": "@upgradekit/widget",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "UpgradeKit embed widget for feature gating",
-  "main": "./src/index.ts",
+  "main": "dist/upgradekit.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "echo 'Widget build coming soon'",
     "type-check": "tsc --noEmit"
